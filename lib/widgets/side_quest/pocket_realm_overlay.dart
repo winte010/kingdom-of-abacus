@@ -17,7 +17,7 @@ class PocketRealmOverlay extends StatelessWidget {
       children: [
         // Dimmed background
         Container(
-          color: Colors.black.withOpacity(0.7),
+          color: Colors.black.withValues(alpha: 0.7),
         ),
 
         // Centered content
@@ -30,7 +30,7 @@ class PocketRealmOverlay extends StatelessWidget {
               borderRadius: BorderRadius.circular(24),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.purple.withOpacity(0.5),
+                  color: Colors.purple.withValues(alpha: 0.5),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),

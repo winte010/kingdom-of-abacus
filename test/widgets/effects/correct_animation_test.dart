@@ -47,7 +47,10 @@ void main() {
 
       final decoration = container.decoration as BoxDecoration;
       expect(decoration.shape, BoxShape.circle);
-      expect(decoration.color, Colors.green.withOpacity(0.3));
+      expect(
+        decoration.color,
+        Colors.green.withValues(alpha: 0.3),
+      );
     });
 
     testWidgets('has scale transition animation', (tester) async {
@@ -59,7 +62,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(ScaleTransition), findsOneWidget);
+      expect(find.byType(ScaleTransition), findsWidgets);
+      expect(
+        find.descendant(
+          of: find.byType(CorrectAnimation),
+          matching: find.byType(ScaleTransition),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('calls onComplete callback when animation finishes',

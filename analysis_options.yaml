@@ -20,7 +20,6 @@ linter:
     - lines_longer_than_80_chars
 
     # Documentation
-    - package_api_docs
     - public_member_api_docs
 
     # Best practices

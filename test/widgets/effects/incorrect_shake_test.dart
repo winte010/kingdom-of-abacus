@@ -29,7 +29,14 @@ void main() {
         ),
       );
 
-      expect(find.byType(AnimatedBuilder), findsOneWidget);
+      expect(find.byType(AnimatedBuilder), findsWidgets);
+      expect(
+        find.descendant(
+          of: find.byType(IncorrectShake),
+          matching: find.byType(AnimatedBuilder),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('uses Transform.translate for shake effect', (tester) async {
@@ -79,11 +86,11 @@ void main() {
 
     testWidgets('handles complex child widgets', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: IncorrectShake(
               child: Column(
-                children: const [
+                children: [
                   Text('Line 1'),
                   Text('Line 2'),
                 ],
@@ -117,10 +124,10 @@ void main() {
 
     testWidgets('can handle multiple simultaneous instances', (tester) async {
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: Column(
-              children: const [
+              children: [
                 IncorrectShake(child: Text('Widget 1')),
                 IncorrectShake(child: Text('Widget 2')),
               ],

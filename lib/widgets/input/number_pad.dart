@@ -58,88 +58,92 @@ class _NumberPadState extends State<NumberPad> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Display current input
-        Container(
-          height: 80,
-          width: double.infinity,
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.outline,
-              width: 2,
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Display current input
+          Container(
+            height: 80,
+            width: double.infinity,
+            margin: const EdgeInsets.only(bottom: 8),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.outline,
+                width: 2,
+              ),
             ),
-          ),
-          child: Center(
-            child: Text(
-              _currentInput.isEmpty ? '?' : _currentInput,
-              style: const TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
+            child: Center(
+              child: Text(
+                _currentInput.isEmpty ? '?' : _currentInput,
+                style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-        ),
 
-        // Number buttons (1-9)
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 1.5,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-          ),
-          itemCount: 9,
-          itemBuilder: (context, index) {
-            final number = index + 1;
-            return _NumberButton(
-              number: number,
-              onTap: () => _onNumberTap(number),
-              enabled: widget.enabled,
-            );
-          },
-        ),
-
-        const SizedBox(height: 8),
-
-        // Bottom row: Delete, 0, Submit
-        Row(
-          children: [
-            Expanded(
-              child: _ActionButton(
-                icon: Icons.backspace_outlined,
-                label: 'Delete',
-                onTap: _onDelete,
-                enabled: widget.enabled && _currentInput.isNotEmpty,
-              ),
+          // Number buttons (1-9)
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 1.5,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _NumberButton(
-                number: 0,
-                onTap: () => _onNumberTap(0),
+            itemCount: 9,
+            itemBuilder: (context, index) {
+              final number = index + 1;
+              return _NumberButton(
+                number: number,
+                onTap: () => _onNumberTap(number),
                 enabled: widget.enabled,
+              );
+            },
+          ),
+
+          const SizedBox(height: 8),
+
+          // Bottom row: Delete, 0, Submit
+          Row(
+            children: [
+              Expanded(
+                child: _ActionButton(
+                  icon: Icons.backspace_outlined,
+                  label: 'Delete',
+                  onTap: _onDelete,
+                  enabled: widget.enabled && _currentInput.isNotEmpty,
+                ),
               ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _ActionButton(
-                icon: Icons.check,
-                label: 'Submit',
-                onTap: _onSubmit,
-                enabled: widget.enabled && _currentInput.isNotEmpty,
-                isPrimary: true,
+              const SizedBox(width: 8),
+              Expanded(
+                child: _NumberButton(
+                  number: 0,
+                  onTap: () => _onNumberTap(0),
+                  enabled: widget.enabled,
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+              const SizedBox(width: 8),
+              Expanded(
+                child: _ActionButton(
+                  icon: Icons.check,
+                  label: 'Submit',
+                  onTap: _onSubmit,
+                  enabled: widget.enabled && _currentInput.isNotEmpty,
+                  isPrimary: true,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -160,7 +164,7 @@ class _NumberButton extends StatelessWidget {
     return Material(
       color: enabled
           ? Theme.of(context).colorScheme.primaryContainer
-          : Theme.of(context).colorScheme.surfaceVariant,
+          : Theme.of(context).colorScheme.surfaceContainerHighest,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: enabled ? onTap : null,
@@ -214,7 +218,7 @@ class _ActionButton extends StatelessWidget {
     return Material(
       color: enabled
           ? backgroundColor
-          : Theme.of(context).colorScheme.surfaceVariant,
+          : Theme.of(context).colorScheme.surfaceContainerHighest,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: enabled ? onTap : null,

@@ -33,7 +33,7 @@ void main() {
       final containers = tester.widgetList<Container>(find.byType(Container));
       final backgroundContainer = containers.first;
 
-      expect(backgroundContainer.color, Colors.black.withOpacity(0.7));
+      expect(backgroundContainer.color, Colors.black.withValues(alpha: 0.7));
     });
 
     testWidgets('shows close button when onClose is provided', (tester) async {
@@ -147,7 +147,7 @@ void main() {
       expect(decoration.boxShadow!.isNotEmpty, isTrue);
 
       final shadow = decoration.boxShadow!.first;
-      expect(shadow.color, Colors.purple.withOpacity(0.5));
+      expect(shadow.color, Colors.purple.withValues(alpha: 0.5));
     });
 
     testWidgets('content has proper padding', (tester) async {

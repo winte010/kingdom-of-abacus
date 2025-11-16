@@ -20,7 +20,7 @@ class StoryUnlockOverlay extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           opacity: 1.0 - progress,
           child: Container(
-            color: Colors.grey.withOpacity(0.7),
+            color: Colors.grey.withValues(alpha: 0.7),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

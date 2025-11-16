@@ -21,7 +21,7 @@ class GameProgressIndicator extends StatelessWidget {
         LinearProgressIndicator(
           value: progress,
           minHeight: 8,
-          backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
           valueColor: AlwaysStoppedAnimation(
             Theme.of(context).colorScheme.primary,
           ),

@@ -46,7 +46,7 @@ class _CorrectAnimationState extends State<CorrectAnimation>
         width: 200,
         height: 200,
         decoration: BoxDecoration(
-          color: Colors.green.withOpacity(0.3),
+          color: Colors.green.withValues(alpha: 0.3),
           shape: BoxShape.circle,
         ),
         child: const Icon(

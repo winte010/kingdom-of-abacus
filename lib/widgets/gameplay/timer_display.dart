@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 /// Countdown timer with color-coded urgency
 class TimerDisplay extends StatefulWidget {
@@ -79,7 +80,7 @@ class _TimerDisplayState extends State<TimerDisplay>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(24),
               border: Border.all(color: color, width: 3),
             ),
