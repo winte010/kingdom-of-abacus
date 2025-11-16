@@ -1,0 +1,49 @@
+name: kingdom_of_abacus
+description: A story-driven educational math game for ages 5-12
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.4.0
+
+  # Backend
+  supabase_flutter: ^2.0.0
+
+  # Configuration
+  flutter_dotenv: ^5.1.0
+
+  # Local Storage
+  shared_preferences: ^2.2.2
+  path_provider: ^2.1.1
+
+  # Audio
+  audioplayers: ^5.2.1
+
+  # Animations
+  lottie: ^2.7.0
+
+  # Icons
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/config/chapters/
+    - assets/placeholders/characters/
+    - assets/placeholders/backgrounds/
+    - assets/chapters/
+    - assets/audio/
+    - .env

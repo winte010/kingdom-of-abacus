@@ -1,0 +1,64 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Error rules
+    - avoid_print
+    - avoid_relative_lib_imports
+    - prefer_relative_imports
+    - avoid_types_as_parameter_names
+    - no_duplicate_case_values
+    - valid_regexps
+
+    # Style rules
+    - camel_case_types
+    - library_names
+    - file_names
+    - non_constant_identifier_names
+    - constant_identifier_names
+    - directives_ordering
+    - lines_longer_than_80_chars
+
+    # Documentation
+    - package_api_docs
+    - public_member_api_docs
+
+    # Best practices
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_fields
+    - prefer_final_locals
+    - unnecessary_this
+    - use_key_in_widget_constructors
+    - sort_child_properties_last
+
+    # Avoid
+    - avoid_empty_else
+    - avoid_init_to_null
+    - avoid_null_checks_in_equality_operators
+    - avoid_return_types_on_setters
+    - avoid_shadowing_type_parameters
+    - avoid_types_on_closure_parameters
+    - await_only_futures
+    - empty_catches
+    - empty_constructor_bodies
+    - unnecessary_brace_in_string_interps
+    - unnecessary_const
+    - unnecessary_new
+    - unnecessary_null_in_if_null_operators
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    # Treat missing required parameters as errors
+    missing_required_param: error
+    # Treat missing returns as errors
+    missing_return: error
+    # Ignore info level issues in tests
+    todo: ignore
+    # Allow public member API docs to be missing (for now)
+    public_member_api_docs: ignore
+    # Allow lines longer than 80 chars
+    lines_longer_than_80_chars: ignore
