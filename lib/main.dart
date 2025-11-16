@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'services/supabase_service.dart';
+import 'utils/logger.dart';
 
-void main() {
-  runApp(const KingdomOfAbacusApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    // Initialize Supabase
+    await SupabaseService.initialize();
+    Logger.info('Supabase initialized');
+
+    // Test connection
+    await SupabaseService.testConnection();
+
+    runApp(const ProviderScope(child: MyApp()));
+  } catch (e, stackTrace) {
+    Logger.error('Failed to initialize app', e, stackTrace);
+    rethrow;
+  }
 }
 
-/// Main application widget
-class KingdomOfAbacusApp extends StatelessWidget {
-  const KingdomOfAbacusApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +32,7 @@ class KingdomOfAbacusApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'Kingdom of Abacus - Coming Soon!',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+      home: const Placeholder(), // Agent 3 will create actual screens
     );
   }
 }

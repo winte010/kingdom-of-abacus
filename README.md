@@ -34,7 +34,12 @@ A story-driven educational math game for ages 5-12, where children discover thei
    flutter pub get
    ```
 
-3. **Configure environment variables**
+3. **Generate JSON serialization code**
+   ```bash
+   flutter pub run build_runner build --delete-conflicting-outputs
+   ```
+
+4. **Configure environment variables**
    ```bash
    # Copy the example environment file
    cp .env.example .env
@@ -43,11 +48,11 @@ A story-driven educational math game for ages 5-12, where children discover thei
    # Get these from: https://app.supabase.com/project/_/settings/api
    ```
 
-4. **Set up Supabase database**
+5. **Set up Supabase database**
 
    See the [Supabase Setup](#supabase-setup) section below.
 
-5. **Run the app**
+6. **Run the app**
    ```bash
    # iOS
    flutter run -d ios
