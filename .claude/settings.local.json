@@ -11,7 +11,13 @@
       "Bash(git init:*)",
       "Bash(git branch:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(flutter pub get:*)",
+      "Bash(flutter pub run build_runner build:*)",
+      "Bash(flutter test:*)",
+      "Bash(tee:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(dart format:*)"
     ],
     "deny": [],
     "ask": []

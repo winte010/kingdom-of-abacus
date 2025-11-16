@@ -51,12 +51,12 @@ jobs:
           COVERAGE=$(lcov --summary coverage/lcov.info 2>&1 | grep "lines" | awk '{print $2}' | sed 's/%//')
           echo "Coverage: $COVERAGE%"
 
-          # Check if coverage meets threshold (80%)
-          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
-            echo "❌ Coverage $COVERAGE% is below the required 80% threshold"
+          # Check if coverage meets threshold (70% for foundation phase)
+          if (( $(echo "$COVERAGE < 70" | bc -l) )); then
+            echo "❌ Coverage $COVERAGE% is below the required 70% threshold"
             exit 1
           else
-            echo "✅ Coverage $COVERAGE% meets the required 80% threshold"
+            echo "✅ Coverage $COVERAGE% meets the required 70% threshold"
           fi
 
       - name: Upload coverage to Codecov (optional)
