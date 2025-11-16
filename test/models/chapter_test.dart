@@ -1,8 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kingdom_of_abacus/models/chapter.dart';
 import 'package:kingdom_of_abacus/models/segment.dart';
-import 'package:kingdom_of_abacus/models/problem_config.dart';
-import 'package:kingdom_of_abacus/models/problem.dart';
 
 void main() {
   group('Chapter', () {

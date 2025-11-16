@@ -1,12 +1,9 @@
 import '../models/problem.dart';
-import '../models/problem_config.dart';
 import 'weakness_detector.dart';
-import 'problem_generator.dart';
 
 /// Manages side quest triggering and execution
 class SideQuestService {
   final WeaknessDetector _detector = WeaknessDetector();
-  final ProblemGenerator _generator = ProblemGenerator();
 
   String? _pendingTopic;
   bool _isActive = false;
@@ -53,13 +50,6 @@ class SideQuestService {
     if (factFamily == null) return [];
 
     // Generate problems all involving this number
-    final config = ProblemConfig(
-      type: ProblemType.addition,
-      min: 1,
-      max: 10,
-      difficulty: Difficulty.easy,
-    );
-
     final problems = <Problem>[];
 
     // Generate problems: factFamily + 1, factFamily + 2, etc.

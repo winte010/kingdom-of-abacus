@@ -63,7 +63,7 @@ class ProgressService {
 
       if (response == null) return null;
 
-      return Progress.fromJson(response as Map<String, dynamic>);
+      return Progress.fromJson(response);
     } catch (e) {
       print('Warning: Failed to load from cloud: $e');
       return null;
