@@ -27,7 +27,9 @@ class SideQuestService {
     _detector.recordProblem(problem, correct);
 
     // Check if we should trigger a side quest
-    if (_detector.shouldTriggerSideQuest() && !_isActive && _pendingTopic == null) {
+    if (_detector.shouldTriggerSideQuest() &&
+        !_isActive &&
+        _pendingTopic == null) {
       _pendingTopic = _detector.weakestFactFamily;
     }
   }
@@ -46,7 +48,8 @@ class SideQuestService {
     if (_pendingTopic == null) return [];
 
     // Extract the number from topic (e.g., "6" from "additions_with_6")
-    final factFamily = int.tryParse(_pendingTopic!.replaceAll(RegExp(r'[^0-9]'), ''));
+    final factFamily =
+        int.tryParse(_pendingTopic!.replaceAll(RegExp(r'[^0-9]'), ''));
     if (factFamily == null) return [];
 
     // Generate problems all involving this number

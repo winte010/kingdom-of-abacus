@@ -24,7 +24,8 @@ class SideQuest extends Equatable {
     this.completedAt,
   });
 
-  factory SideQuest.fromJson(Map<String, dynamic> json) => _$SideQuestFromJson(json);
+  factory SideQuest.fromJson(Map<String, dynamic> json) =>
+      _$SideQuestFromJson(json);
   Map<String, dynamic> toJson() => _$SideQuestToJson(this);
 
   SideQuest copyWith({
@@ -48,5 +49,13 @@ class SideQuest extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, chapterId, weakTopic, problems, requiredAccuracy, completed, completedAt];
+  List<Object?> get props => [
+        id,
+        chapterId,
+        weakTopic,
+        problems,
+        requiredAccuracy,
+        completed,
+        completedAt
+      ];
 }

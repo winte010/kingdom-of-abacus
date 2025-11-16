@@ -25,7 +25,8 @@ class Progress extends Equatable {
     this.metadata,
   });
 
-  factory Progress.fromJson(Map<String, dynamic> json) => _$ProgressFromJson(json);
+  factory Progress.fromJson(Map<String, dynamic> json) =>
+      _$ProgressFromJson(json);
   Map<String, dynamic> toJson() => _$ProgressToJson(this);
 
   double get accuracy {
@@ -57,13 +58,13 @@ class Progress extends Equatable {
 
   @override
   List<Object?> get props => [
-    userId,
-    chapterId,
-    currentSegment,
-    problemsCompleted,
-    problemsCorrect,
-    completed,
-    lastPlayed,
-    metadata,
-  ];
+        userId,
+        chapterId,
+        currentSegment,
+        problemsCompleted,
+        problemsCorrect,
+        completed,
+        lastPlayed,
+        metadata,
+      ];
 }

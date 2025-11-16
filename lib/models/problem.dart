@@ -22,11 +22,13 @@ class Problem extends Equatable {
     required this.difficulty,
   }) : id = id ?? const Uuid().v4();
 
-  factory Problem.fromJson(Map<String, dynamic> json) => _$ProblemFromJson(json);
+  factory Problem.fromJson(Map<String, dynamic> json) =>
+      _$ProblemFromJson(json);
   Map<String, dynamic> toJson() => _$ProblemToJson(this);
 
   /// Create an addition problem
-  factory Problem.addition(int a, int b, {Difficulty difficulty = Difficulty.medium}) {
+  factory Problem.addition(int a, int b,
+      {Difficulty difficulty = Difficulty.medium}) {
     return Problem(
       type: ProblemType.addition,
       operand1: a,
@@ -37,7 +39,8 @@ class Problem extends Equatable {
   }
 
   /// Create a subtraction problem
-  factory Problem.subtraction(int a, int b, {Difficulty difficulty = Difficulty.medium}) {
+  factory Problem.subtraction(int a, int b,
+      {Difficulty difficulty = Difficulty.medium}) {
     return Problem(
       type: ProblemType.subtraction,
       operand1: a,
@@ -48,7 +51,8 @@ class Problem extends Equatable {
   }
 
   /// Create a multiplication problem
-  factory Problem.multiplication(int a, int b, {Difficulty difficulty = Difficulty.medium}) {
+  factory Problem.multiplication(int a, int b,
+      {Difficulty difficulty = Difficulty.medium}) {
     return Problem(
       type: ProblemType.multiplication,
       operand1: a,
@@ -59,7 +63,8 @@ class Problem extends Equatable {
   }
 
   /// Create a division problem
-  factory Problem.division(int dividend, int divisor, {Difficulty difficulty = Difficulty.medium}) {
+  factory Problem.division(int dividend, int divisor,
+      {Difficulty difficulty = Difficulty.medium}) {
     return Problem(
       type: ProblemType.division,
       operand1: dividend,

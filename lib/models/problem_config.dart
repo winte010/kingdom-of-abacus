@@ -17,6 +17,7 @@ class ProblemConfig {
     required this.difficulty,
   });
 
-  factory ProblemConfig.fromJson(Map<String, dynamic> json) => _$ProblemConfigFromJson(json);
+  factory ProblemConfig.fromJson(Map<String, dynamic> json) =>
+      _$ProblemConfigFromJson(json);
   Map<String, dynamic> toJson() => _$ProblemConfigToJson(this);
 }

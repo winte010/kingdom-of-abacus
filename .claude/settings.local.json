@@ -16,7 +16,8 @@
       "Bash(flutter pub run build_runner build:*)",
       "Bash(flutter test:*)",
       "Bash(tee:*)",
-      "Bash(flutter analyze:*)"
+      "Bash(flutter analyze:*)",
+      "Bash(dart format:*)"
     ],
     "deny": [],
     "ask": []

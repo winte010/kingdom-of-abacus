@@ -51,9 +51,14 @@ class MockData {
       landId: landId,
       mathTopic: mathTopic,
       segments: [
-        createMockSegment(id: 'segment_1', type: SegmentType.story, problemCount: 0),
-        createMockSegment(id: 'segment_2', type: SegmentType.practice, problemCount: 25),
-        createMockSegment(id: 'segment_3', type: SegmentType.timedChallenge, problemCount: 30),
+        createMockSegment(
+            id: 'segment_1', type: SegmentType.story, problemCount: 0),
+        createMockSegment(
+            id: 'segment_2', type: SegmentType.practice, problemCount: 25),
+        createMockSegment(
+            id: 'segment_3',
+            type: SegmentType.timedChallenge,
+            problemCount: 30),
       ],
       totalProblems: totalProblems,
     );

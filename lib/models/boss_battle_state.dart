@@ -23,7 +23,8 @@ class BossBattleState extends Equatable {
     this.isDefeated = false,
   });
 
-  factory BossBattleState.fromJson(Map<String, dynamic> json) => _$BossBattleStateFromJson(json);
+  factory BossBattleState.fromJson(Map<String, dynamic> json) =>
+      _$BossBattleStateFromJson(json);
   Map<String, dynamic> toJson() => _$BossBattleStateToJson(this);
 
   BossBattleState copyWith({
@@ -48,12 +49,12 @@ class BossBattleState extends Equatable {
 
   @override
   List<Object?> get props => [
-    chapterId,
-    bossHealth,
-    problemsCompleted,
-    totalProblems,
-    consecutiveWrong,
-    currentTimeLimit,
-    isDefeated,
-  ];
+        chapterId,
+        bossHealth,
+        problemsCompleted,
+        totalProblems,
+        consecutiveWrong,
+        currentTimeLimit,
+        isDefeated,
+      ];
 }

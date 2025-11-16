@@ -51,7 +51,8 @@ void main() {
       );
 
       final problems = generator.generate(config, 50);
-      final signatures = problems.map((p) => '${p.operand1}+${p.operand2}').toSet();
+      final signatures =
+          problems.map((p) => '${p.operand1}+${p.operand2}').toSet();
 
       // Should have high uniqueness (allow some duplicates in large sets)
       expect(signatures.length, greaterThan(40));

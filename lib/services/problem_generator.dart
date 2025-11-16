@@ -18,7 +18,8 @@ class ProblemGenerator {
       // Try to generate unique problem (max 100 attempts)
       while (attempts < 100) {
         problem = generateSingle(config);
-        final key = '${problem.operand1}${problem.type.name}${problem.operand2}';
+        final key =
+            '${problem.operand1}${problem.type.name}${problem.operand2}';
 
         if (!_generatedThisSession.contains(key)) {
           _generatedThisSession.add(key);
@@ -80,7 +81,8 @@ class ProblemGenerator {
     final safeDivisor = divisor == 0 ? 1 : divisor;
     final dividend = answer * safeDivisor;
 
-    return Problem.division(dividend, safeDivisor, difficulty: config.difficulty);
+    return Problem.division(dividend, safeDivisor,
+        difficulty: config.difficulty);
   }
 
   /// Clear session history (call when starting new chapter)

@@ -23,7 +23,8 @@ class Chapter extends Equatable {
     required this.totalProblems,
   });
 
-  factory Chapter.fromJson(Map<String, dynamic> json) => _$ChapterFromJson(json);
+  factory Chapter.fromJson(Map<String, dynamic> json) =>
+      _$ChapterFromJson(json);
   Map<String, dynamic> toJson() => _$ChapterToJson(this);
 
   Chapter copyWith({
@@ -45,5 +46,6 @@ class Chapter extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, title, landId, mathTopic, segments, totalProblems];
+  List<Object?> get props =>
+      [id, title, landId, mathTopic, segments, totalProblems];
 }

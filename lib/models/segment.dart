@@ -22,11 +22,13 @@ class Segment extends Equatable {
     this.timeLimit,
   });
 
-  factory Segment.fromJson(Map<String, dynamic> json) => _$SegmentFromJson(json);
+  factory Segment.fromJson(Map<String, dynamic> json) =>
+      _$SegmentFromJson(json);
   Map<String, dynamic> toJson() => _$SegmentToJson(this);
 
   @override
-  List<Object?> get props => [id, type, storyFile, problemCount, problemConfig, timeLimit];
+  List<Object?> get props =>
+      [id, type, storyFile, problemCount, problemConfig, timeLimit];
 }
 
 enum SegmentType {
