@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'screens/home_screen.dart';
 import 'services/supabase_service.dart';
 import 'utils/logger.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const Placeholder(), // Agent 3 will create actual screens
+      home: const HomeScreen(),
     );
   }
 }
