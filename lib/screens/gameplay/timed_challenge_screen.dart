@@ -11,6 +11,9 @@ import '../../widgets/gameplay/timer_display.dart';
 import '../../widgets/gameplay/progress_indicator.dart';
 import '../../widgets/effects/correct_animation.dart';
 import '../../widgets/effects/incorrect_shake.dart';
+import '../../widgets/characters/pearl_keeper_sprite.dart';
+import '../../services/character_animation_service.dart';
+import '../../config/character_config.dart';
 
 class TimedChallengeScreen extends ConsumerStatefulWidget {
   final Segment segment;
@@ -28,11 +31,30 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
   int _correct = 0;
   bool _showFeedback = false;
   bool _lastAnswerCorrect = false;
+  late CharacterAnimationService _characterService;
 
   @override
   void initState() {
     super.initState();
+    _characterService = CharacterAnimationService();
+    _characterService.addListener(_onCharacterStateChange);
+    _characterService.onSessionStart();
     _generateProblems();
+  }
+
+  void _onCharacterStateChange() {
+    // Trigger rebuild when character state changes
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _characterService.removeListener(_onCharacterStateChange);
+    _characterService.onSessionEnd();
+    _characterService.dispose();
+    super.dispose();
   }
 
   void _generateProblems() {
@@ -57,6 +79,9 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
 
     if (isCorrect) {
       setState(() => _correct++);
+      _characterService.onCorrectAnswer();
+    } else {
+      _characterService.onIncorrectAnswer();
     }
 
     // Wait for animation, then move to next
@@ -70,6 +95,7 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
       // Move to next problem or complete
       if (_currentIndex < _problems.length - 1) {
         setState(() => _currentIndex++);
+        _characterService.onNewProblem();
       } else {
         _complete();
       }
@@ -198,6 +224,16 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
                   },
                 ),
               ),
+
+            // Pearl Keeper character
+            Positioned(
+              bottom: CharacterConfig.defaultBottomOffset,
+              right: CharacterConfig.defaultRightOffset,
+              child: PearlKeeperSprite(
+                state: _characterService.currentState,
+                size: CharacterConfig.defaultSize,
+              ),
+            ),
           ],
         ),
       ),

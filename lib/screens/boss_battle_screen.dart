@@ -13,6 +13,9 @@ import '../widgets/input/number_pad.dart';
 import '../widgets/gameplay/progress_indicator.dart';
 import '../widgets/effects/correct_animation.dart';
 import '../widgets/effects/incorrect_shake.dart';
+import '../widgets/characters/pearl_keeper_sprite.dart';
+import '../services/character_animation_service.dart';
+import '../config/character_config.dart';
 
 class BossBattleScreen extends ConsumerStatefulWidget {
   final Segment segment;
@@ -25,6 +28,7 @@ class BossBattleScreen extends ConsumerStatefulWidget {
 
 class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
   late BossBattleService _battleService;
+  late CharacterAnimationService _characterService;
   List<Problem> _problems = [];
   int _currentIndex = 0;
   bool _showFeedback = false;
@@ -38,7 +42,26 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
       totalProblems: widget.segment.problemCount,
     );
 
+    _characterService = CharacterAnimationService();
+    _characterService.addListener(_onCharacterStateChange);
+    _characterService.onSessionStart();
+
     _generateProblems();
+  }
+
+  void _onCharacterStateChange() {
+    // Trigger rebuild when character state changes
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _characterService.removeListener(_onCharacterStateChange);
+    _characterService.onSessionEnd();
+    _characterService.dispose();
+    super.dispose();
   }
 
   void _generateProblems() {
@@ -60,8 +83,10 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
 
       if (isCorrect) {
         _battleService.recordCorrectAnswer();
+        _characterService.onCorrectAnswer();
       } else {
         _battleService.recordWrongAnswer();
+        _characterService.onIncorrectAnswer();
       }
     });
 
@@ -77,6 +102,7 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
         _showVictory();
       } else if (_currentIndex < _problems.length - 1) {
         setState(() => _currentIndex++);
+        _characterService.onNewProblem();
       }
     });
   }
@@ -199,6 +225,16 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
                   },
                 ),
               ),
+
+            // Pearl Keeper character (positioned higher for boss battle)
+            Positioned(
+              bottom: CharacterConfig.bossBottomOffset,
+              right: CharacterConfig.defaultRightOffset,
+              child: PearlKeeperSprite(
+                state: _characterService.currentState,
+                size: CharacterConfig.defaultSize,
+              ),
+            ),
           ],
         ),
       ),
