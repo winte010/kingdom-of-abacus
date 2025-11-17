@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/segment.dart';
 import '../models/problem.dart';
+import '../models/progress.dart';
 import '../providers/game_providers.dart';
+import '../providers/chapter_providers.dart';
 import '../services/boss_battle_service.dart';
 import '../widgets/boss/boss_display.dart';
 import '../widgets/boss/boss_health_bar.dart';
@@ -79,7 +81,32 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
     });
   }
 
-  void _showVictory() {
+  Future<void> _showVictory() async {
+    // Save progress for boss victory
+    try {
+      final progressService = ref.read(progressServiceProvider);
+      final currentChapter = ref.read(currentChapterProvider);
+      final segmentIndex = ref.read(currentSegmentProvider);
+
+      if (currentChapter != null) {
+        final progress = Progress(
+          userId: 'anonymous', // TODO: Get from auth
+          chapterId: currentChapter.id ?? '',
+          currentSegment: segmentIndex + 1,
+          problemsCompleted: _battleService.problemsCompleted,
+          problemsCorrect: _battleService.problemsCompleted, // Victory means 100%
+          completed: false, // Not chapter complete, just boss
+          lastPlayed: DateTime.now(),
+        );
+
+        await progressService.saveProgress(progress);
+      }
+    } catch (e) {
+      debugPrint('Failed to save progress: $e');
+    }
+
+    if (!mounted) return;
+
     showDialog(
       context: context,
       barrierDismissible: false,

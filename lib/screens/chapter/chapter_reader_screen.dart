@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/chapter_providers.dart';
 import '../../models/segment.dart';
 import '../../models/chapter.dart';
+import '../../models/progress.dart';
 import '../../widgets/book/book_page.dart';
 import '../gameplay/timed_challenge_screen.dart';
 import '../boss_battle_screen.dart';
@@ -193,12 +194,39 @@ class ChapterReaderScreen extends ConsumerWidget {
           Text('You completed ${chapter.title}!'),
           const SizedBox(height: 32),
           ElevatedButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => _completeChapter(context, ref, chapter),
             child: const Text('Back to Chapters'),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _completeChapter(
+      BuildContext context, WidgetRef ref, Chapter chapter) async {
+    // Save progress for chapter completion
+    try {
+      final progressService = ref.read(progressServiceProvider);
+      final segmentIndex = ref.read(currentSegmentProvider);
+
+      final progress = Progress(
+        userId: 'anonymous', // TODO: Get from auth
+        chapterId: chapter.id ?? '',
+        currentSegment: chapter.segments.length, // All segments complete
+        problemsCompleted: 0, // Will be aggregated from segments
+        problemsCorrect: 0, // Will be aggregated from segments
+        completed: true, // Chapter is fully complete
+        lastPlayed: DateTime.now(),
+      );
+
+      await progressService.saveProgress(progress);
+    } catch (e) {
+      debugPrint('Failed to save progress: $e');
+    }
+
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
   }
 
   void _advanceSegment(WidgetRef ref) {

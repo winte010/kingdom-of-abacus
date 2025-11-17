@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/segment.dart';
 import '../../models/problem.dart';
+import '../../models/progress.dart';
 import '../../providers/game_providers.dart';
+import '../../providers/chapter_providers.dart';
 import '../../widgets/problems/problem_display.dart';
 import '../../widgets/input/number_pad.dart';
 import '../../widgets/gameplay/timer_display.dart';
@@ -79,8 +81,35 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
     _onSubmit(-1);
   }
 
-  void _complete() {
+  Future<void> _complete() async {
     final accuracy = _correct / _problems.length;
+
+    // Save progress
+    try {
+      final progressService = ref.read(progressServiceProvider);
+      final currentChapter = ref.read(currentChapterProvider);
+      final segmentIndex = ref.read(currentSegmentProvider);
+
+      if (currentChapter != null) {
+        // Update progress with challenge completion
+        final progress = Progress(
+          userId: 'anonymous', // TODO: Get from auth
+          chapterId: currentChapter.id ?? '',
+          currentSegment: segmentIndex + 1,
+          problemsCompleted: _problems.length,
+          problemsCorrect: _correct,
+          completed: false, // Not chapter complete, just segment
+          lastPlayed: DateTime.now(),
+        );
+
+        await progressService.saveProgress(progress);
+      }
+    } catch (e) {
+      // Progress save failed, but continue anyway
+      debugPrint('Failed to save progress: $e');
+    }
+
+    if (!mounted) return;
 
     showDialog(
       context: context,

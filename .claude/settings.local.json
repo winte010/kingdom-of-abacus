@@ -17,7 +17,9 @@
       "Bash(flutter test:*)",
       "Bash(tee:*)",
       "Bash(flutter analyze:*)",
-      "Bash(dart format:*)"
+      "Bash(dart format:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(lcov:*)"
     ],
     "deny": [],
     "ask": []
