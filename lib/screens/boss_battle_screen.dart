@@ -6,6 +6,7 @@ import '../models/progress.dart';
 import '../providers/game_providers.dart';
 import '../providers/chapter_providers.dart';
 import '../services/boss_battle_service.dart';
+import '../services/character_animation_service.dart';
 import '../widgets/boss/boss_display.dart';
 import '../widgets/boss/boss_health_bar.dart';
 import '../widgets/problems/problem_display.dart';
@@ -13,6 +14,7 @@ import '../widgets/input/number_pad.dart';
 import '../widgets/gameplay/progress_indicator.dart';
 import '../widgets/effects/correct_animation.dart';
 import '../widgets/effects/incorrect_shake.dart';
+import '../widgets/characters/pearl_keeper_character.dart';
 
 class BossBattleScreen extends ConsumerStatefulWidget {
   final Segment segment;
@@ -25,6 +27,7 @@ class BossBattleScreen extends ConsumerStatefulWidget {
 
 class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
   late BossBattleService _battleService;
+  late CharacterAnimationService _characterService;
   List<Problem> _problems = [];
   int _currentIndex = 0;
   bool _showFeedback = false;
@@ -38,7 +41,16 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
       totalProblems: widget.segment.problemCount,
     );
 
+    _characterService = CharacterAnimationService();
+    _characterService.show(); // Show Pearl Keeper during boss battle
+
     _generateProblems();
+  }
+
+  @override
+  void dispose() {
+    _characterService.dispose();
+    super.dispose();
   }
 
   void _generateProblems() {
@@ -60,8 +72,10 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
 
       if (isCorrect) {
         _battleService.recordCorrectAnswer();
+        _characterService.celebrateCorrect(); // Pearl Keeper celebrates!
       } else {
         _battleService.recordWrongAnswer();
+        _characterService.encouragePlayer(); // Pearl Keeper encourages!
       }
     });
 
@@ -77,6 +91,7 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
         _showVictory();
       } else if (_currentIndex < _problems.length - 1) {
         setState(() => _currentIndex++);
+        _characterService.thinkWithPlayer(); // Pearl Keeper thinks with player
       }
     });
   }
@@ -199,6 +214,11 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
                   },
                 ),
               ),
+
+            // Pearl Keeper character
+            PearlKeeperOverlay(
+              animationService: _characterService,
+            ),
           ],
         ),
       ),

@@ -5,12 +5,14 @@ import '../../models/problem.dart';
 import '../../models/progress.dart';
 import '../../providers/game_providers.dart';
 import '../../providers/chapter_providers.dart';
+import '../../services/character_animation_service.dart';
 import '../../widgets/problems/problem_display.dart';
 import '../../widgets/input/number_pad.dart';
 import '../../widgets/gameplay/timer_display.dart';
 import '../../widgets/gameplay/progress_indicator.dart';
 import '../../widgets/effects/correct_animation.dart';
 import '../../widgets/effects/incorrect_shake.dart';
+import '../../widgets/characters/pearl_keeper_character.dart';
 
 class TimedChallengeScreen extends ConsumerStatefulWidget {
   final Segment segment;
@@ -23,6 +25,7 @@ class TimedChallengeScreen extends ConsumerStatefulWidget {
 }
 
 class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
+  late CharacterAnimationService _characterService;
   List<Problem> _problems = [];
   int _currentIndex = 0;
   int _correct = 0;
@@ -32,7 +35,15 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
   @override
   void initState() {
     super.initState();
+    _characterService = CharacterAnimationService();
+    _characterService.show(); // Show Pearl Keeper during challenge
     _generateProblems();
+  }
+
+  @override
+  void dispose() {
+    _characterService.dispose();
+    super.dispose();
   }
 
   void _generateProblems() {
@@ -57,6 +68,9 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
 
     if (isCorrect) {
       setState(() => _correct++);
+      _characterService.celebrateCorrect(); // Pearl Keeper celebrates!
+    } else {
+      _characterService.encouragePlayer(); // Pearl Keeper encourages!
     }
 
     // Wait for animation, then move to next
@@ -70,6 +84,7 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
       // Move to next problem or complete
       if (_currentIndex < _problems.length - 1) {
         setState(() => _currentIndex++);
+        _characterService.thinkWithPlayer(); // Pearl Keeper thinks with player
       } else {
         _complete();
       }
@@ -198,6 +213,11 @@ class _TimedChallengeScreenState extends ConsumerState<TimedChallengeScreen> {
                   },
                 ),
               ),
+
+            // Pearl Keeper character
+            PearlKeeperOverlay(
+              animationService: _characterService,
+            ),
           ],
         ),
       ),
