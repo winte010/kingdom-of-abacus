@@ -3,6 +3,7 @@ import 'package:kingdom_of_abacus/models/segment.dart';
 import 'package:kingdom_of_abacus/models/problem.dart';
 import 'package:kingdom_of_abacus/models/problem_config.dart';
 import 'package:kingdom_of_abacus/models/progress.dart';
+import 'package:kingdom_of_abacus/models/side_quest.dart';
 
 /// Mock data for testing
 class MockData {
@@ -113,6 +114,36 @@ class MockData {
       operand2: operand2,
       answer: answer,
       difficulty: difficulty,
+    );
+  }
+
+  /// Create a mock side quest for testing
+  static SideQuest createMockSideQuest({
+    String id = 'test_side_quest',
+    String chapterId = 'test_chapter',
+    String weakTopic = 'additions_with_6',
+    int problemCount = 10,
+    int requiredAccuracy = 80,
+    bool completed = false,
+  }) {
+    // Generate problems for the side quest
+    final problems = List.generate(
+      problemCount,
+      (index) => createMockProblem(
+        type: ProblemType.addition,
+        operand1: 6,
+        operand2: index + 1,
+      ),
+    );
+
+    return SideQuest(
+      id: id,
+      chapterId: chapterId,
+      weakTopic: weakTopic,
+      problems: problems,
+      requiredAccuracy: requiredAccuracy,
+      completed: completed,
+      completedAt: completed ? DateTime.now() : null,
     );
   }
 }

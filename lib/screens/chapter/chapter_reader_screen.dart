@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/chapter_providers.dart';
+import '../../providers/side_quest_providers.dart';
+import '../../providers/game_providers.dart';
 import '../../models/segment.dart';
 import '../../models/chapter.dart';
 import '../../models/progress.dart';
 import '../../widgets/book/book_page.dart';
+import '../../widgets/side_quest/side_quest_indicator.dart';
 import '../gameplay/timed_challenge_screen.dart';
 import '../boss_battle_screen.dart';
+import 'dart:math' as math;
 
 class ChapterReaderScreen extends ConsumerWidget {
   const ChapterReaderScreen({super.key});
@@ -34,6 +38,13 @@ class ChapterReaderScreen extends ConsumerWidget {
         title: Text(chapter.title),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        actions: [
+          // Side quest indicator
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: SideQuestIndicator(chapterId: chapter.id ?? ''),
+          ),
+        ],
       ),
       body: _buildSegmentContent(context, ref, segment),
     );
@@ -241,7 +252,10 @@ class ChapterReaderScreen extends ConsumerWidget {
       MaterialPageRoute(
         builder: (context) => TimedChallengeScreen(segment: segment),
       ),
-    ).then((_) => _advanceSegment(ref));
+    ).then((_) {
+      _advanceSegment(ref);
+      _checkForSideQuestDiscovery(context, ref);
+    });
   }
 
   void _startBossBattle(BuildContext context, WidgetRef ref, Segment segment) {
@@ -250,11 +264,91 @@ class ChapterReaderScreen extends ConsumerWidget {
       MaterialPageRoute(
         builder: (context) => BossBattleScreen(segment: segment),
       ),
-    ).then((_) => _advanceSegment(ref));
+    ).then((_) {
+      _advanceSegment(ref);
+      _checkForSideQuestDiscovery(context, ref);
+    });
   }
 
   void _startPractice(BuildContext context, WidgetRef ref, Segment segment) {
     // For MVP, practice is similar to timed challenge without strict timer
     _startTimedChallenge(context, ref, segment);
+  }
+
+  void _checkForSideQuestDiscovery(BuildContext context, WidgetRef ref) {
+    // Random chance to discover a side quest after completing a segment
+    final random = math.Random();
+    if (random.nextDouble() < 0.3) {
+      // 30% chance
+      // Check if there's a pending side quest
+      final service = ref.read(sideQuestServiceProvider);
+      if (service.hasPendingSideQuest) {
+        // Show discovery notification
+        _showSideQuestDiscoveryDialog(context, ref);
+      }
+    }
+  }
+
+  void _showSideQuestDiscoveryDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.purple.shade50,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Sparkle animation
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.purple.withValues(alpha: 0.2),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.auto_awesome,
+                size: 64,
+                color: Colors.purple,
+              ),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Pocket Realm Discovered!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.purple,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'A new side quest is available! Complete it to master your weak areas and earn bonus points.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Later'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              // The indicator will show and user can tap it
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.purple,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Check It Out'),
+          ),
+        ],
+      ),
+    );
   }
 }
