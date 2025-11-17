@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/design_tokens.dart';
 
 /// Visual health bar for boss
 class BossHealthBar extends StatelessWidget {
@@ -35,11 +36,11 @@ class BossHealthBar extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(DesignTokens.radiusSm),
           child: LinearProgressIndicator(
             value: healthPercent,
             minHeight: 24,
-            backgroundColor: Colors.grey[300],
+            backgroundColor: DesignTokens.neutralLight,
             valueColor: AlwaysStoppedAnimation(_getHealthColor(healthPercent)),
           ),
         ),
@@ -48,8 +49,8 @@ class BossHealthBar extends StatelessWidget {
   }
 
   Color _getHealthColor(double percent) {
-    if (percent > 0.5) return Colors.red;
-    if (percent > 0.25) return Colors.orange;
-    return Colors.yellow;
+    if (percent > 0.5) return DesignTokens.errorCoral;
+    if (percent > 0.25) return DesignTokens.accentPeach;
+    return DesignTokens.warningSoftYellow;
   }
 }

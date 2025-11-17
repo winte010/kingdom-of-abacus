@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/design_tokens.dart';
 
 /// Green sparkle animation for correct answers
 class CorrectAnimation extends StatefulWidget {
@@ -46,13 +47,13 @@ class _CorrectAnimationState extends State<CorrectAnimation>
         width: 200,
         height: 200,
         decoration: BoxDecoration(
-          color: Colors.green.withValues(alpha: 0.3),
+          color: DesignTokens.successGreen.withValues(alpha: 0.3),
           shape: BoxShape.circle,
         ),
         child: const Icon(
           Icons.check_circle,
           size: 100,
-          color: Colors.green,
+          color: DesignTokens.successGreen,
         ),
       ),
     );

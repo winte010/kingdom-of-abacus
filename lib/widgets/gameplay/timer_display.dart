@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../../config/design_tokens.dart';
 
 /// Countdown timer with color-coded urgency
 class TimerDisplay extends StatefulWidget {
@@ -108,11 +109,11 @@ class _TimerDisplayState extends State<TimerDisplay>
 
   Color _getColor(int seconds) {
     if (seconds > 7) {
-      return Colors.green;
+      return DesignTokens.successGreen;
     } else if (seconds > 4) {
-      return Colors.orange;
+      return DesignTokens.accentPeach;
     } else {
-      return Colors.red;
+      return DesignTokens.errorCoral;
     }
   }
 }

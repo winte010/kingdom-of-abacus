@@ -194,6 +194,91 @@ kingdom-of-abacus/
 └── README.md
 ```
 
+## 🎨 Design System & Theme
+
+Kingdom of Abacus features a comprehensive pastel theme system with a storybook aesthetic.
+
+### Color Palette
+
+The app uses a soft pastel color scheme:
+
+- **Primary (Lavender)**: `#E6D5F5` - Main brand color
+- **Secondary (Mint)**: `#D5F5E3` - Secondary actions
+- **Accent (Peach)**: `#FFD4C4` - Highlights and CTAs
+- **Background (Cream)**: `#FFF9F5` - Main background
+- **Text (Charcoal)**: `#4A4A4A` - Primary text
+- **Success (Green)**: `#B8E6CC` - Success states
+- **Error (Coral)**: `#FFB8B8` - Error states
+- **Warning (Yellow)**: `#FFF4CC` - Warning states
+
+### Typography
+
+- **Font Family**: Georgia (serif) for storybook feel
+- **Headings**: Bold serif fonts with proper hierarchy
+- **Body Text**: Readable serif with 1.5 line height
+- **Math Numbers**: Large, clear serif for problem display
+
+### Theme Structure
+
+```
+lib/
+├── theme/
+│   └── app_theme.dart           # Main theme configuration
+├── config/
+│   └── design_tokens.dart       # Design tokens (colors, spacing, etc.)
+└── widgets/
+    └── styled/                  # Styled component library
+        ├── styled_button.dart   # Hand-drawn style buttons
+        ├── styled_card.dart     # Watercolor shadow cards
+        └── styled_text.dart     # Text hierarchy components
+```
+
+### Design Tokens
+
+All design values are centralized in `design_tokens.dart`:
+
+- **Spacing**: `spaceXs` (4px) to `spaceXxl` (48px)
+- **Border Radius**: `radiusSm` (8px) to `radiusXl` (24px)
+- **Shadows**: Watercolor-style soft shadows
+- **Animation Durations**: `animationFast` (150ms) to `animationVerySlow` (800ms)
+
+### Styled Components
+
+Use the themed components from `lib/widgets/styled/`:
+
+```dart
+// Buttons with hand-drawn feel
+StyledButton(
+  text: 'Start Chapter',
+  onPressed: () {},
+  variant: StyledButtonVariant.primary,
+)
+
+// Cards with watercolor shadows
+StyledCard(
+  variant: StyledCardVariant.watercolor,
+  child: Text('Card content'),
+)
+
+// Text with proper hierarchy
+StyledText.h1('Chapter Title')
+StyledText.body('Story text goes here...')
+StyledText.mathNumber('42')
+```
+
+### Theme Customization
+
+To modify the theme:
+
+1. **Update Colors**: Edit `lib/config/design_tokens.dart`
+2. **Modify Theme**: Update `lib/theme/app_theme.dart`
+3. **Apply Theme**: Theme is automatically applied via `MaterialApp` in `main.dart`
+
+**Important**: Avoid hardcoded colors in widgets. Always use:
+- `Theme.of(context).colorScheme.*` for theme colors
+- `DesignTokens.*` for custom pastel colors
+- Styled components for consistent appearance
+
 ## 🧪 Testing
 
 ### Run all tests

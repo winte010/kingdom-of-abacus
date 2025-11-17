@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../config/design_tokens.dart';
 
 /// Floating damage number animation
 class DamageIndicator extends StatefulWidget {
@@ -60,10 +61,12 @@ class _DamageIndicatorState extends State<DamageIndicator>
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: widget.isPlayerDamage ? Colors.red : Colors.green,
+            color: widget.isPlayerDamage
+                ? DesignTokens.errorCoral
+                : DesignTokens.successGreen,
             shadows: [
               Shadow(
-                color: Colors.black.withValues(alpha: 0.5),
+                color: DesignTokens.textCharcoal.withValues(alpha: 0.5),
                 blurRadius: 4,
               ),
             ],
