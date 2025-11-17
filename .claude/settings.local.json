@@ -19,7 +19,11 @@
       "Bash(flutter analyze:*)",
       "Bash(dart format:*)",
       "Bash(git cherry-pick:*)",
-      "Bash(lcov:*)"
+      "Bash(lcov:*)",
+      "Bash(flutter devices:*)",
+      "Bash(git merge:*)",
+      "Bash(flutter run:*)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []
