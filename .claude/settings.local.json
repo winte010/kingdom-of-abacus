@@ -23,7 +23,12 @@
       "Bash(flutter devices:*)",
       "Bash(git merge:*)",
       "Bash(flutter run:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(supabase init:*)",
+      "Bash(supabase start:*)",
+      "Bash(supabase projects list:*)",
+      "Bash(supabase status:*)",
+      "Bash(flutter create:*)"
     ],
     "deny": [],
     "ask": []

@@ -49,9 +49,10 @@ flutter:
   uses-material-design: true
 
   # Uncomment assets as they are created:
-  # assets:
-  #   - assets/config/chapters/
-  #   - assets/placeholders/characters/
-  #   - assets/placeholders/backgrounds/
-  #   - assets/chapters/
-  #   - assets/audio/
+  assets:
+    - assets/.env
+    - assets/config/chapters/
+    - assets/placeholders/characters/
+    - assets/placeholders/backgrounds/
+    - assets/chapters/
+    - assets/audio/
