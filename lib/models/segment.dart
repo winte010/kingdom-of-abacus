@@ -12,6 +12,8 @@ class Segment extends Equatable {
   final int problemCount;
   final ProblemConfig? problemConfig;
   final int? timeLimit; // seconds per problem
+  final String? characterAnimation; // path to .riv file
+  final CharacterEmotion? characterEmotion; // emotion state for character
 
   const Segment({
     required this.id,
@@ -20,6 +22,8 @@ class Segment extends Equatable {
     required this.problemCount,
     this.problemConfig,
     this.timeLimit,
+    this.characterAnimation,
+    this.characterEmotion,
   });
 
   factory Segment.fromJson(Map<String, dynamic> json) =>
@@ -27,8 +31,16 @@ class Segment extends Equatable {
   Map<String, dynamic> toJson() => _$SegmentToJson(this);
 
   @override
-  List<Object?> get props =>
-      [id, type, storyFile, problemCount, problemConfig, timeLimit];
+  List<Object?> get props => [
+        id,
+        type,
+        storyFile,
+        problemCount,
+        problemConfig,
+        timeLimit,
+        characterAnimation,
+        characterEmotion,
+      ];
 }
 
 enum SegmentType {
@@ -40,4 +52,17 @@ enum SegmentType {
   practice,
   @JsonValue('boss_battle')
   bossBattle,
+}
+
+enum CharacterEmotion {
+  @JsonValue('happy')
+  happy,
+  @JsonValue('excited')
+  excited,
+  @JsonValue('worried')
+  worried,
+  @JsonValue('proud')
+  proud,
+  @JsonValue('surprised')
+  surprised,
 }

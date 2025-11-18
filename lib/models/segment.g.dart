@@ -16,6 +16,9 @@ Segment _$SegmentFromJson(Map<String, dynamic> json) => Segment(
           : ProblemConfig.fromJson(
               json['problemConfig'] as Map<String, dynamic>),
       timeLimit: (json['timeLimit'] as num?)?.toInt(),
+      characterAnimation: json['characterAnimation'] as String?,
+      characterEmotion: $enumDecodeNullable(
+          _$CharacterEmotionEnumMap, json['characterEmotion']),
     );
 
 Map<String, dynamic> _$SegmentToJson(Segment instance) => <String, dynamic>{
@@ -25,6 +28,8 @@ Map<String, dynamic> _$SegmentToJson(Segment instance) => <String, dynamic>{
       'problemCount': instance.problemCount,
       'problemConfig': instance.problemConfig?.toJson(),
       'timeLimit': instance.timeLimit,
+      'characterAnimation': instance.characterAnimation,
+      'characterEmotion': _$CharacterEmotionEnumMap[instance.characterEmotion],
     };
 
 const _$SegmentTypeEnumMap = {
@@ -32,4 +37,12 @@ const _$SegmentTypeEnumMap = {
   SegmentType.timedChallenge: 'timed_challenge',
   SegmentType.practice: 'practice',
   SegmentType.bossBattle: 'boss_battle',
+};
+
+const _$CharacterEmotionEnumMap = {
+  CharacterEmotion.happy: 'happy',
+  CharacterEmotion.excited: 'excited',
+  CharacterEmotion.worried: 'worried',
+  CharacterEmotion.proud: 'proud',
+  CharacterEmotion.surprised: 'surprised',
 };

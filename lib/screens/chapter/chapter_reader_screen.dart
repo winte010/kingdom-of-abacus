@@ -8,6 +8,7 @@ import '../../models/chapter.dart';
 import '../../models/progress.dart';
 import '../../widgets/book/book_page.dart';
 import '../../widgets/side_quest/side_quest_indicator.dart';
+import '../../widgets/characters/pearl_keeper_character.dart';
 import '../gameplay/timed_challenge_screen.dart';
 import '../boss_battle_screen.dart';
 import 'dart:math' as math;
@@ -68,10 +69,23 @@ class ChapterReaderScreen extends ConsumerWidget {
       BuildContext context, WidgetRef ref, Segment segment) {
     // For MVP, show placeholder text
     // In production, load from segment.storyFile
+    final hasCharacter = segment.characterAnimation != null ||
+                         segment.characterEmotion != null;
+
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
         children: [
+          // Character display (if configured in segment)
+          if (hasCharacter) ...[
+            PearlKeeperCharacter(
+              animationPath: segment.characterAnimation,
+              emotion: segment.characterEmotion ?? CharacterEmotion.happy,
+              width: 200,
+              height: 200,
+            ),
+            const SizedBox(height: 16),
+          ],
           Expanded(
             child: BookPage(
               text: segment.storyFile != null

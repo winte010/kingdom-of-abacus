@@ -33,6 +33,7 @@ dependencies:
 
   # Animations
   lottie: ^2.7.0
+  rive: ^0.13.0
 
   # Icons
   cupertino_icons: ^1.0.2
@@ -56,3 +57,4 @@ flutter:
     - assets/placeholders/backgrounds/
     - assets/chapters/
     - assets/audio/
+    - assets/characters/pearl_keeper/
