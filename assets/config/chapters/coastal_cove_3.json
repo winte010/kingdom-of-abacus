@@ -1,0 +1,56 @@
+{
+  "id": "coastal_cove_3",
+  "title": "Chapter 3: The Final Challenge",
+  "landId": "coastal_cove",
+  "mathTopic": "subtraction",
+  "totalProblems": 55,
+  "segments": [
+    {
+      "id": "crisis",
+      "type": "story",
+      "storyFile": "assets/chapters/coastal_cove_3/crisis.md",
+      "problemCount": 0
+    },
+    {
+      "id": "rescue_mission",
+      "type": "timed_challenge",
+      "problemCount": 20,
+      "timeLimit": 15,
+      "problemConfig": {
+        "type": "subtraction",
+        "min": 1,
+        "max": 10,
+        "difficulty": "easy"
+      }
+    },
+    {
+      "id": "preparation",
+      "type": "story",
+      "storyFile": "assets/chapters/coastal_cove_3/preparation.md",
+      "problemCount": 0
+    },
+    {
+      "id": "beach_cleanup",
+      "type": "practice",
+      "problemCount": 15,
+      "problemConfig": {
+        "type": "subtraction",
+        "min": 1,
+        "max": 20,
+        "difficulty": "medium"
+      }
+    },
+    {
+      "id": "final_battle",
+      "type": "boss_battle",
+      "problemCount": 20,
+      "timeLimit": 12,
+      "problemConfig": {
+        "type": "subtraction",
+        "min": 1,
+        "max": 20,
+        "difficulty": "hard"
+      }
+    }
+  ]
+}

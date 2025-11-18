@@ -1,0 +1,56 @@
+{
+  "id": "coastal_cove_2",
+  "title": "Chapter 2: Tide Pool Navigation",
+  "landId": "coastal_cove",
+  "mathTopic": "two_digit_addition",
+  "totalProblems": 55,
+  "segments": [
+    {
+      "id": "introduction",
+      "type": "story",
+      "storyFile": "assets/chapters/coastal_cove_2/introduction.md",
+      "problemCount": 0
+    },
+    {
+      "id": "navigation",
+      "type": "timed_challenge",
+      "problemCount": 20,
+      "timeLimit": 20,
+      "problemConfig": {
+        "type": "addition",
+        "min": 10,
+        "max": 99,
+        "difficulty": "medium"
+      }
+    },
+    {
+      "id": "discovery",
+      "type": "story",
+      "storyFile": "assets/chapters/coastal_cove_2/discovery.md",
+      "problemCount": 0
+    },
+    {
+      "id": "organization",
+      "type": "practice",
+      "problemCount": 15,
+      "problemConfig": {
+        "type": "addition",
+        "min": 10,
+        "max": 99,
+        "difficulty": "medium"
+      }
+    },
+    {
+      "id": "completion",
+      "type": "boss_battle",
+      "problemCount": 20,
+      "timeLimit": 15,
+      "problemConfig": {
+        "type": "addition",
+        "min": 10,
+        "max": 99,
+        "difficulty": "medium"
+      }
+    }
+  ]
+}

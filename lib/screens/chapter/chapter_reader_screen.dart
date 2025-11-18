@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/chapter_providers.dart';
 import '../../providers/side_quest_providers.dart';
@@ -66,29 +67,80 @@ class ChapterReaderScreen extends ConsumerWidget {
 
   Widget _buildStorySegment(
       BuildContext context, WidgetRef ref, Segment segment) {
-    // For MVP, show placeholder text
-    // In production, load from segment.storyFile
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Expanded(
-            child: BookPage(
-              text: segment.storyFile != null
-                  ? 'Story content would go here from ${segment.storyFile}'
-                  : 'Welcome to the Kingdom of Abacus! Your adventure begins...',
+    return FutureBuilder<String>(
+      future: _loadStoryContent(segment),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 48, color: Colors.red),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Failed to load story',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Error: ${snapshot.error}',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () => _advanceSegment(ref),
+                    child: const Text('Continue Anyway'),
+                  ),
+                ],
+              ),
             ),
+          );
+        }
+
+        final storyText = snapshot.data ??
+            'Welcome to the Kingdom of Abacus! Your adventure begins...';
+
+        return Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              Expanded(
+                child: BookPage(text: storyText),
+              ),
+              ElevatedButton(
+                onPressed: () => _advanceSegment(ref),
+                child: const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text('Continue', style: TextStyle(fontSize: 18)),
+                ),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () => _advanceSegment(ref),
-            child: const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Continue', style: TextStyle(fontSize: 18)),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
+  }
+
+  Future<String> _loadStoryContent(Segment segment) async {
+    if (segment.storyFile == null || segment.storyFile!.isEmpty) {
+      return 'Welcome to the Kingdom of Abacus! Your adventure begins...';
+    }
+
+    try {
+      final content =
+          await rootBundle.loadString(segment.storyFile!);
+      return content;
+    } catch (e) {
+      debugPrint('Error loading story file ${segment.storyFile}: $e');
+      rethrow;
+    }
   }
 
   Widget _buildTimedChallengeButton(

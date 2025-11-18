@@ -1,0 +1,56 @@
+{
+  "id": "coastal_cove_1",
+  "title": "Chapter 1: Arrival at Coastal Cove",
+  "landId": "coastal_cove",
+  "mathTopic": "addition",
+  "totalProblems": 55,
+  "segments": [
+    {
+      "id": "arrival",
+      "type": "story",
+      "storyFile": "assets/chapters/coastal_cove_1/arrival.md",
+      "problemCount": 0
+    },
+    {
+      "id": "rescue",
+      "type": "timed_challenge",
+      "problemCount": 20,
+      "timeLimit": 15,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 10,
+        "difficulty": "easy"
+      }
+    },
+    {
+      "id": "learning",
+      "type": "story",
+      "storyFile": "assets/chapters/coastal_cove_1/learning.md",
+      "problemCount": 0
+    },
+    {
+      "id": "practice",
+      "type": "practice",
+      "problemCount": 15,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 10,
+        "difficulty": "easy"
+      }
+    },
+    {
+      "id": "conclusion",
+      "type": "boss_battle",
+      "problemCount": 20,
+      "timeLimit": 10,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 10,
+        "difficulty": "medium"
+      }
+    }
+  ]
+}
