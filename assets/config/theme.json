@@ -1,0 +1,47 @@
+{
+  "animations": {
+    "pageTurn": {
+      "duration": 600,
+      "curve": "easeInOut",
+      "description": "Page turn animation duration in milliseconds"
+    },
+    "pageFlip": {
+      "duration": 400,
+      "curve": "ease",
+      "description": "Quick page flip animation"
+    },
+    "effects": {
+      "watercolorFade": {
+        "duration": 800,
+        "curve": "easeIn",
+        "opacity": 0.25
+      },
+      "roughEdges": {
+        "enabled": true,
+        "intensity": 0.7
+      },
+      "shadowDepth": 0.3
+    }
+  },
+  "book": {
+    "pageBackgrounds": [
+      "assets/images/backgrounds/watercolor_1.png",
+      "assets/images/backgrounds/watercolor_2.png",
+      "assets/images/backgrounds/watercolor_3.png"
+    ],
+    "pageCurl": {
+      "enabled": true,
+      "intensity": 0.8
+    },
+    "typography": {
+      "fontSize": 18,
+      "lineHeight": 1.5,
+      "fontColor": "#000000DE"
+    }
+  },
+  "performance": {
+    "targetFPS": 60,
+    "useHardwareAcceleration": true,
+    "cacheImages": true
+  }
+}

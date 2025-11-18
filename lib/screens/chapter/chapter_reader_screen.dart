@@ -7,6 +7,7 @@ import '../../models/segment.dart';
 import '../../models/chapter.dart';
 import '../../models/progress.dart';
 import '../../widgets/book/book_page.dart';
+import '../../widgets/book/animated_book_page.dart';
 import '../../widgets/side_quest/side_quest_indicator.dart';
 import '../gameplay/timed_challenge_screen.dart';
 import '../boss_battle_screen.dart';
@@ -66,28 +67,19 @@ class ChapterReaderScreen extends ConsumerWidget {
 
   Widget _buildStorySegment(
       BuildContext context, WidgetRef ref, Segment segment) {
-    // For MVP, show placeholder text
+    // For MVP, show placeholder text with animated pages
     // In production, load from segment.storyFile
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Expanded(
-            child: BookPage(
-              text: segment.storyFile != null
-                  ? 'Story content would go here from ${segment.storyFile}'
-                  : 'Welcome to the Kingdom of Abacus! Your adventure begins...',
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () => _advanceSegment(ref),
-            child: const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Continue', style: TextStyle(fontSize: 18)),
-            ),
-          ),
-        ],
-      ),
+
+    // Create sample pages for the story segment
+    final List<String> storyPages = [
+      'Welcome to the Kingdom of Abacus!\n\nYour adventure begins in a land where numbers hold magical power. The kingdom is in peril, and only you can help restore balance through the ancient art of mathematics.',
+      'Long ago, the wise Math Wizards kept the kingdom prosperous and safe. But dark forces have emerged, threatening to plunge the realm into chaos.\n\nYou must master the powers of addition, subtraction, and more to become a hero of legend.',
+      'Your journey starts here. Swipe to turn the page and begin your quest!\n\nRemember: every problem you solve makes you stronger, and every challenge you face brings you closer to saving the kingdom.',
+    ];
+
+    return AnimatedBookPage(
+      pages: storyPages,
+      onComplete: () => _advanceSegment(ref),
     );
   }
 

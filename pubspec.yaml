@@ -51,8 +51,10 @@ flutter:
   # Uncomment assets as they are created:
   assets:
     - assets/.env
+    - assets/config/
     - assets/config/chapters/
     - assets/placeholders/characters/
     - assets/placeholders/backgrounds/
     - assets/chapters/
     - assets/audio/
+    - assets/images/backgrounds/
