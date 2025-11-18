@@ -12,6 +12,8 @@ class Segment extends Equatable {
   final int problemCount;
   final ProblemConfig? problemConfig;
   final int? timeLimit; // seconds per problem
+  final MathObjectType? mathObjectType; // Type of interactive math objects to use
+  final InteractionStyle? interactionStyle; // How objects should be interacted with
 
   const Segment({
     required this.id,
@@ -20,6 +22,8 @@ class Segment extends Equatable {
     required this.problemCount,
     this.problemConfig,
     this.timeLimit,
+    this.mathObjectType,
+    this.interactionStyle,
   });
 
   factory Segment.fromJson(Map<String, dynamic> json) =>
@@ -28,7 +32,7 @@ class Segment extends Equatable {
 
   @override
   List<Object?> get props =>
-      [id, type, storyFile, problemCount, problemConfig, timeLimit];
+      [id, type, storyFile, problemCount, problemConfig, timeLimit, mathObjectType, interactionStyle];
 }
 
 enum SegmentType {
@@ -40,4 +44,24 @@ enum SegmentType {
   practice,
   @JsonValue('boss_battle')
   bossBattle,
+}
+
+enum MathObjectType {
+  @JsonValue('shells')
+  shells,
+  @JsonValue('treasures')
+  treasures,
+  @JsonValue('rocks')
+  rocks,
+  @JsonValue('numberpad')
+  numberpad,
+}
+
+enum InteractionStyle {
+  @JsonValue('drag')
+  drag,
+  @JsonValue('tap')
+  tap,
+  @JsonValue('both')
+  both,
 }

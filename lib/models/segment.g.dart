@@ -16,6 +16,10 @@ Segment _$SegmentFromJson(Map<String, dynamic> json) => Segment(
           : ProblemConfig.fromJson(
               json['problemConfig'] as Map<String, dynamic>),
       timeLimit: (json['timeLimit'] as num?)?.toInt(),
+      mathObjectType: $enumDecodeNullable(
+          _$MathObjectTypeEnumMap, json['mathObjectType']),
+      interactionStyle: $enumDecodeNullable(
+          _$InteractionStyleEnumMap, json['interactionStyle']),
     );
 
 Map<String, dynamic> _$SegmentToJson(Segment instance) => <String, dynamic>{
@@ -25,6 +29,8 @@ Map<String, dynamic> _$SegmentToJson(Segment instance) => <String, dynamic>{
       'problemCount': instance.problemCount,
       'problemConfig': instance.problemConfig?.toJson(),
       'timeLimit': instance.timeLimit,
+      'mathObjectType': _$MathObjectTypeEnumMap[instance.mathObjectType],
+      'interactionStyle': _$InteractionStyleEnumMap[instance.interactionStyle],
     };
 
 const _$SegmentTypeEnumMap = {
@@ -32,4 +38,17 @@ const _$SegmentTypeEnumMap = {
   SegmentType.timedChallenge: 'timed_challenge',
   SegmentType.practice: 'practice',
   SegmentType.bossBattle: 'boss_battle',
+};
+
+const _$MathObjectTypeEnumMap = {
+  MathObjectType.shells: 'shells',
+  MathObjectType.treasures: 'treasures',
+  MathObjectType.rocks: 'rocks',
+  MathObjectType.numberpad: 'numberpad',
+};
+
+const _$InteractionStyleEnumMap = {
+  InteractionStyle.drag: 'drag',
+  InteractionStyle.tap: 'tap',
+  InteractionStyle.both: 'both',
 };

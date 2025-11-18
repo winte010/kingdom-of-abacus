@@ -1,0 +1,59 @@
+{
+  "id": "ch99_interactive_demo",
+  "title": "Interactive Math Objects Demo",
+  "description": "Examples of using interactive math objects in practice segments",
+  "segments": [
+    {
+      "id": "practice_shells",
+      "type": "practice",
+      "problemCount": 5,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 10,
+        "difficulty": "easy"
+      },
+      "mathObjectType": "shells",
+      "interactionStyle": "tap"
+    },
+    {
+      "id": "practice_treasures",
+      "type": "practice",
+      "problemCount": 5,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 10,
+        "difficulty": "easy"
+      },
+      "mathObjectType": "treasures",
+      "interactionStyle": "drag"
+    },
+    {
+      "id": "practice_rocks",
+      "type": "practice",
+      "problemCount": 5,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 15,
+        "difficulty": "easy"
+      },
+      "mathObjectType": "rocks",
+      "interactionStyle": "both"
+    },
+    {
+      "id": "practice_numberpad",
+      "type": "practice",
+      "problemCount": 5,
+      "problemConfig": {
+        "type": "addition",
+        "min": 1,
+        "max": 20,
+        "difficulty": "medium"
+      },
+      "mathObjectType": "numberpad",
+      "interactionStyle": "tap"
+    }
+  ]
+}
