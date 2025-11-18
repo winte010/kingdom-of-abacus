@@ -1,0 +1,115 @@
+{
+  "colors": {
+    "primary": "#A8D5E2",
+    "primaryDark": "#7BA8C0",
+    "primaryLight": "#D1EAF0",
+    "secondary": "#E8C4F0",
+    "secondaryDark": "#C89FD9",
+    "secondaryLight": "#F4E0F7",
+    "accent": "#FFD4A3",
+    "accentDark": "#E8B67C",
+    "accentLight": "#FFE8CC",
+    "success": "#B8E6C9",
+    "successDark": "#8DC9A3",
+    "successLight": "#D9F2E3",
+    "warning": "#FFDAB3",
+    "warningDark": "#E8BC8F",
+    "warningLight": "#FFE8D1",
+    "error": "#FCE8E8",
+    "errorDark": "#E8B8B8",
+    "errorLight": "#FEF5F5",
+    "info": "#B8D4E6",
+    "infoDark": "#8FB3C9",
+    "infoLight": "#D9E8F2",
+    "background": "#FFF9F5",
+    "surface": "#FFFFFF",
+    "surfaceVariant": "#F8F0EB",
+    "outline": "#D4C4BC",
+    "shadow": "#B8A89C",
+    "inverseSurface": "#4A3F38",
+    "inverseOnSurface": "#FFF9F5",
+    "inversePrimary": "#D1EAF0",
+    "scrim": "#000000",
+    "onPrimary": "#2C3E50",
+    "onPrimaryContainer": "#1A2530",
+    "onSecondary": "#4A2C54",
+    "onSecondaryContainer": "#2F1A38",
+    "onAccent": "#5C4A2C",
+    "onSuccess": "#2C5C3F",
+    "onWarning": "#5C4A2C",
+    "onError": "#8C3030",
+    "onInfo": "#2C4A5C",
+    "onBackground": "#4A3F38",
+    "onSurface": "#4A3F38",
+    "onSurfaceVariant": "#5C544A"
+  },
+  "typography": {
+    "storyFont": {
+      "family": "Merriweather",
+      "weights": [300, 400, 700]
+    },
+    "headingFont": {
+      "family": "Crimson Text",
+      "weights": [400, 600, 700]
+    },
+    "bodyFont": {
+      "family": "Nunito",
+      "weights": [300, 400, 600, 700, 800]
+    },
+    "uiFont": {
+      "family": "Quicksand",
+      "weights": [400, 500, 600, 700]
+    },
+    "sizes": {
+      "displayLarge": 57.0,
+      "displayMedium": 45.0,
+      "displaySmall": 36.0,
+      "headlineLarge": 32.0,
+      "headlineMedium": 28.0,
+      "headlineSmall": 24.0,
+      "titleLarge": 22.0,
+      "titleMedium": 16.0,
+      "titleSmall": 14.0,
+      "bodyLarge": 16.0,
+      "bodyMedium": 14.0,
+      "bodySmall": 12.0,
+      "labelLarge": 14.0,
+      "labelMedium": 12.0,
+      "labelSmall": 11.0
+    }
+  },
+  "spacing": {
+    "xs": 4.0,
+    "sm": 8.0,
+    "md": 16.0,
+    "lg": 24.0,
+    "xl": 32.0,
+    "xxl": 48.0,
+    "xxxl": 64.0
+  },
+  "borderRadius": {
+    "none": 0.0,
+    "sm": 4.0,
+    "md": 8.0,
+    "lg": 12.0,
+    "xl": 16.0,
+    "xxl": 24.0,
+    "full": 9999.0
+  },
+  "elevation": {
+    "none": 0.0,
+    "sm": 2.0,
+    "md": 4.0,
+    "lg": 8.0,
+    "xl": 12.0,
+    "xxl": 16.0
+  },
+  "animation": {
+    "durationShort": 200,
+    "durationMedium": 300,
+    "durationLong": 500,
+    "curveStandard": "easeInOut",
+    "curveDecelerate": "easeOut",
+    "curveAccelerate": "easeIn"
+  }
+}

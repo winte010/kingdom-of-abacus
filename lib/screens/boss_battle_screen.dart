@@ -13,6 +13,7 @@ import '../widgets/input/number_pad.dart';
 import '../widgets/gameplay/progress_indicator.dart';
 import '../widgets/effects/correct_animation.dart';
 import '../widgets/effects/incorrect_shake.dart';
+import '../theme/app_theme.dart';
 
 class BossBattleScreen extends ConsumerStatefulWidget {
   final Segment segment;
@@ -112,12 +113,12 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         title: const Text('Victory!'),
-        content: const Column(
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.emoji_events, size: 100, color: Colors.amber),
-            SizedBox(height: 16),
-            Text(
+            Icon(Icons.emoji_events, size: 100, color: AppTheme.colors.accent),
+            const SizedBox(height: 16),
+            const Text(
               'You defeated the Chaos Kraken!',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
@@ -151,8 +152,8 @@ class _BossBattleScreenState extends ConsumerState<BossBattleScreen> {
       appBar: AppBar(
         title: const Text('Boss Battle'),
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
+        backgroundColor: AppTheme.colors.errorDark,
+        foregroundColor: AppTheme.colors.surface,
       ),
       body: SafeArea(
         child: Stack(

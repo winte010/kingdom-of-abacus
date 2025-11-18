@@ -10,6 +10,7 @@ import '../../widgets/book/book_page.dart';
 import '../../widgets/side_quest/side_quest_indicator.dart';
 import '../gameplay/timed_challenge_screen.dart';
 import '../boss_battle_screen.dart';
+import '../../theme/app_theme.dart';
 import 'dart:math' as math;
 
 class ChapterReaderScreen extends ConsumerWidget {
@@ -97,7 +98,7 @@ class ChapterReaderScreen extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.timer, size: 100, color: Colors.orange),
+          Icon(Icons.timer, size: 100, color: AppTheme.colors.warning),
           const SizedBox(height: 24),
           Text(
             'Timed Challenge!',
@@ -127,12 +128,12 @@ class ChapterReaderScreen extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.shield, size: 100, color: Colors.red),
+          Icon(Icons.shield, size: 100, color: AppTheme.colors.errorDark),
           const SizedBox(height: 24),
           Text(
             'Boss Battle!',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: Colors.red,
+                  color: AppTheme.colors.errorDark,
                   fontWeight: FontWeight.bold,
                 ),
           ),
@@ -144,8 +145,8 @@ class ChapterReaderScreen extends ConsumerWidget {
           const SizedBox(height: 32),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
+              backgroundColor: AppTheme.colors.errorDark,
+              foregroundColor: AppTheme.colors.surface,
             ),
             onPressed: () => _startBossBattle(context, ref, segment),
             child: const Padding(
@@ -165,7 +166,7 @@ class ChapterReaderScreen extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.school, size: 100, color: Colors.blue),
+          Icon(Icons.school, size: 100, color: AppTheme.colors.info),
           const SizedBox(height: 24),
           Text(
             'Practice Time!',
@@ -195,7 +196,7 @@ class ChapterReaderScreen extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.celebration, size: 100, color: Colors.amber),
+          Icon(Icons.celebration, size: 100, color: AppTheme.colors.accent),
           const SizedBox(height: 24),
           Text(
             'Chapter Complete!',
@@ -293,37 +294,37 @@ class ChapterReaderScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.purple.shade50,
+        backgroundColor: AppTheme.colors.secondaryLight,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppTheme.borderRadius.xl),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Sparkle animation
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(AppTheme.spacing.lg),
               decoration: BoxDecoration(
-                color: Colors.purple.withValues(alpha: 0.2),
+                color: AppTheme.colors.secondary.withOpacity(0.2),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.auto_awesome,
                 size: 64,
-                color: Colors.purple,
+                color: AppTheme.colors.secondary,
               ),
             ),
-            const SizedBox(height: 24),
-            const Text(
+            SizedBox(height: AppTheme.spacing.lg),
+            Text(
               'Pocket Realm Discovered!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.purple,
+                color: AppTheme.colors.secondary,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: AppTheme.spacing.md),
             const Text(
               'A new side quest is available! Complete it to master your weak areas and earn bonus points.',
               textAlign: TextAlign.center,
@@ -342,8 +343,8 @@ class ChapterReaderScreen extends ConsumerWidget {
               // The indicator will show and user can tap it
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.purple,
-              foregroundColor: Colors.white,
+              backgroundColor: AppTheme.colors.secondary,
+              foregroundColor: AppTheme.colors.onSecondary,
             ),
             child: const Text('Check It Out'),
           ),

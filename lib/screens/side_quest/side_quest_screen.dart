@@ -12,6 +12,7 @@ import '../../widgets/input/number_pad.dart';
 import '../../widgets/gameplay/progress_indicator.dart';
 import '../../widgets/effects/correct_animation.dart';
 import '../../widgets/effects/incorrect_shake.dart';
+import '../../theme/app_theme.dart';
 
 class SideQuestScreen extends ConsumerStatefulWidget {
   final SideQuest quest;
@@ -137,7 +138,7 @@ class _SideQuestScreenState extends ConsumerState<SideQuestScreen> {
             Icon(
               passed ? Icons.star : Icons.refresh,
               size: 64,
-              color: passed ? Colors.amber : Colors.orange,
+              color: passed ? AppTheme.colors.accent : AppTheme.colors.warning,
             ),
             const SizedBox(height: 16),
             Text('You got $_correct out of ${widget.quest.problems.length} correct!'),
@@ -151,9 +152,9 @@ class _SideQuestScreenState extends ConsumerState<SideQuestScreen> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.purple.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.purple),
+                  color: AppTheme.colors.secondary.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(AppTheme.borderRadius.md),
+                  border: Border.all(color: AppTheme.colors.secondary),
                 ),
                 child: Column(
                   children: [
@@ -163,9 +164,9 @@ class _SideQuestScreenState extends ConsumerState<SideQuestScreen> {
                     ),
                     Text(
                       '+$reward bonus points',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 24,
-                        color: Colors.purple,
+                        color: AppTheme.colors.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -255,7 +256,7 @@ class _SideQuestScreenState extends ConsumerState<SideQuestScreen> {
                     Text(
                       'Pocket Realm Challenge',
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            color: Colors.purple,
+                            color: AppTheme.colors.secondary,
                             fontWeight: FontWeight.bold,
                           ),
                     ),

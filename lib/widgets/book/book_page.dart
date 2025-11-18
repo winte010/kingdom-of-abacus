@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theme/app_theme.dart';
 
 /// Displays story text in book-style interface
 class BookPage extends StatelessWidget {
@@ -23,15 +24,11 @@ class BookPage extends StatelessWidget {
               ),
             )
           : null,
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(AppTheme.spacing.lg),
       child: SingleChildScrollView(
         child: Text(
           text,
-          style: const TextStyle(
-            fontSize: 18,
-            height: 1.5,
-            color: Colors.black87,
-          ),
+          style: getStoryTextStyle(context),
         ),
       ),
     );
